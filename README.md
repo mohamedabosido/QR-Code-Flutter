@@ -1,4 +1,4 @@
-# flutter_qr
+# Flutter_QR Code
 
 A new Flutter project.
 
