@@ -41,8 +41,6 @@ dependencies:
   flutter_svg: ^1.1.4
   image_picker: ^0.8.5+3
   qr_code_scanner: ^1.0.1
-  permission_handler: ^10.0.0
-  gallery_saver: ^2.3.2
   url_launcher: ^6.1.5
   flutter_share: ^2.0.0
   flutter_slidable: ^2.0.0

@@ -82,16 +82,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         InkWell(
                             onTap: () async {
-                              final XFile? image = await _picker.pickImage(
-                                  source: ImageSource.gallery);
-                              String? result = await Scan.parse(image!.path);
-                              QrCodeModel qr = QrCodeModel(
-                                type: 'Qr Code',
-                                url: result!,
-                                time: DateTime.now(),
-                              );
-                              getController.add(qr: qr);
-                              Get.to(() => ResultScreen(qr: qr));
+                              await _picker
+                                  .pickImage(source: ImageSource.gallery)
+                                  .then((value) async {
+                                String? result = await Scan.parse(value!.path);
+                                QrCodeModel qr = QrCodeModel(
+                                  type: 'Qr Code',
+                                  url: result!,
+                                  time: DateTime.now(),
+                                );
+                                getController.add(qr: qr);
+                                Get.to(() => ResultScreen(qr: qr));
+                              });
                             },
                             child:
                                 SvgPicture.asset('images/image-picture.svg')),
@@ -126,9 +128,6 @@ class _HomeScreenState extends State<HomeScreen> {
           time: DateTime.now(),
         );
         QrController().add(qr: qr);
-        // if (result != null && value.path != null) {
-        //   GallerySaver.saveImage(value.path).then((path) {});
-        // }
       }
     });
   }
