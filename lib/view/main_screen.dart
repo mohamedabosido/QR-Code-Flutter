@@ -4,7 +4,6 @@ import 'package:flutter_qr/view/history_screen.dart';
 import 'package:flutter_qr/view/settings_screen.dart';
 import 'package:flutter_qr/view/home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_qr/controller/qr_controller.dart';
 import 'package:get/get.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,7 +16,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  List<Widget> screens =  [
+  List<Widget> screens = [
     const HomeScreen(),
     HistoryScreen(),
     const SettingsScreen(),
@@ -50,21 +49,21 @@ class _MainScreenState extends State<MainScreen> {
                 color:
                     _currentIndex == 0 ? kPrimaryColor : kUnselectedIconColor,
               ),
-              label: 'Scan'),
+              label: 'Scan'.tr),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'images/History.svg',
                 color:
                     _currentIndex == 1 ? kPrimaryColor : kUnselectedIconColor,
               ),
-              label: 'History'),
+              label: 'History'.tr),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'images/settings.svg',
                 color:
                     _currentIndex == 2 ? kPrimaryColor : kUnselectedIconColor,
               ),
-              label: 'Settings'),
+              label: 'Settings'.tr),
         ],
       ),
     );

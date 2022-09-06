@@ -1,7 +1,7 @@
 class QrCodeModel {
   String type;
   String url;
-  DateTime time;
+  DateTime? time;
 
   QrCodeModel({
     required this.type,
@@ -13,13 +13,14 @@ class QrCodeModel {
     return QrCodeModel(
       type: jsonData['type'],
       url: jsonData['url'],
-      time: jsonData['time'],
+      time: jsonData['time'] == null ? null : DateTime.parse(jsonData["time"]),
     );
   }
 
-  static Map<String, dynamic> toMap(QrCodeModel music) => {
-    'type': music.type,
-    'url': music.url,
-    'time': music.time,
-  };
+  static Map<String, dynamic> toMap(QrCodeModel qr) => {
+        'type': qr.type,
+        'url': qr.url,
+        // ignore: prefer_null_aware_operators
+        'time': qr.time == null ? null : qr.time!.toIso8601String(),
+      };
 }

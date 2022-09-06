@@ -19,9 +19,9 @@ class HistoryScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: const Text(
-          'History',
-          style: TextStyle(
+        title: Text(
+          'History'.tr,
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
@@ -46,8 +46,7 @@ class HistoryScreen extends StatelessWidget {
                           onPressed: (BuildContext context) {
                             controller.delete(qr: controller.history[index]);
                           },
-                          backgroundColor:
-                          kCircleColor,
+                          backgroundColor: kCircleColor,
                           foregroundColor: Colors.red,
                           icon: Icons.delete_outline_rounded,
                           borderRadius: BorderRadius.circular(15),
@@ -59,7 +58,8 @@ class HistoryScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.to(() => HistoryResultScreen(qr: controller.history[index]));
+                            Get.to(() => HistoryResultScreen(
+                                qr: controller.history[index]));
                           },
                           child: ListTile(
                             leading: CircleAvatar(
@@ -77,7 +77,7 @@ class HistoryScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500, fontSize: 16),
                             ),
                             subtitle: Text(
-                              '${controller.history[index].type} - website - ${controller.history[index].time.day}/${controller.history[index].time.month}/${controller.history[index].time.year} - ${controller.history[index].time.hour}:${controller.history[index].time.minute}',
+                              '${controller.history[index].type} - website - ${controller.history[index].time!.day}/${controller.history[index].time!.month}/${controller.history[index].time!.year} - ${controller.history[index].time!.hour}:${controller.history[index].time!.minute}',
                               style: TextStyle(
                                   color: kSecondaryTextColor, fontSize: 12),
                             ),
@@ -104,9 +104,9 @@ class HistoryScreen extends StatelessWidget {
               children: [
                 SvgPicture.asset('images/Scaner.svg', color: Colors.white),
                 SizedBox(width: kDefaultPadding / 2),
-                const Text(
-                  'Scan code',
-                  style: TextStyle(
+                Text(
+                  'Scan-code'.tr,
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 )

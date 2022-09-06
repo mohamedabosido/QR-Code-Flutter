@@ -4,6 +4,7 @@ import 'package:flutter_qr/widgets/custom_app_list_tile.dart';
 import 'package:flutter_qr/widgets/language_list_tile.dart';
 import 'package:flutter_qr/widgets/switch_list_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:get/get.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -16,9 +17,9 @@ class SettingsScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: const Text(
-          'Settings',
-          style: TextStyle(
+        title: Text(
+          'Settings'.tr,
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
@@ -29,20 +30,20 @@ class SettingsScreen extends StatelessWidget {
           Divider(color: kLineColor),
           AppSwitchListTile(
             icon: 'images/settings_icon.svg',
-            title: 'Sound',
-            subTitle: 'Beep when scanned',
+            title: 'Sound'.tr,
+            subTitle: 'Beep when scanned'.tr,
             value: true,
           ),
           AppSwitchListTile(
             icon: 'images/settings_icon.svg',
-            title: 'Vibrate',
-            subTitle: 'Vibrate when scanned',
+            title: 'Vibrate'.tr,
+            subTitle: 'Vibrate when scanned'.tr,
             value: false,
           ),
           AppSwitchListTile(
             icon: 'images/settings_icon.svg',
-            title: 'Copy to clipboard',
-            subTitle: 'Auto-copy scanned QR result',
+            title: 'Copy to clipboard'.tr,
+            subTitle: 'Auto-copy scanned QR result'.tr,
             value: false,
           ),
           SizedBox(height: kDefaultPadding),
@@ -51,11 +52,12 @@ class SettingsScreen extends StatelessWidget {
             thickness: 8,
           ),
           SizedBox(height: kDefaultPadding),
-          LanguageListTile(icon: 'images/language-translate.svg', title: 'Language'),
+          LanguageListTile(
+              icon: 'images/language-translate.svg', title: 'Language'.tr),
           SizedBox(height: kDefaultPadding * 1.5),
           CustomAppListTile(
             icon: 'images/user-protection-shield-square.svg',
-            title: 'Privacy Policy',
+            title: 'Privacy Policy'.tr,
             trailing: IconButton(
               onPressed: () {},
               icon: Icon(
@@ -74,23 +76,23 @@ class SettingsScreen extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Version 1.00',
+                '${'Version'.tr} 1.00',
                 style: TextStyle(
                   color: kUnselectedIconColor,
                 ),
               ),
               SizedBox(height: kDefaultPadding / 2),
               TextButton(
-                onPressed: () async{
+                onPressed: () async {
                   await launchUrl(Uri.parse('https://centroware.com/'));
                 },
                 child: RichText(
-                  text: const TextSpan(
-                    text: 'made with',
-                    style: TextStyle(color: Colors.black),
-                    children: [
+                  text: TextSpan(
+                    text: 'made'.tr,
+                    style: const TextStyle(color: Colors.black),
+                    children: const [
                       TextSpan(
-                        text: ' ❤️ by centroware',
+                        text: 'centroware',
                         style: TextStyle(
                           color: Colors.blue,
                         ),

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/model/qr_model.dart';
@@ -34,22 +32,22 @@ class ResultScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: const Text(
-          'Result',
-          style: TextStyle(
+        title: Text(
+          'Result'.tr,
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
         ),
         actions: [
           IconButton(
-              onPressed: () async{
+              onPressed: () async {
                 await FlutterShare.share(
                     title: 'Share the Qr',
                     linkUrl: qr.url,
-                    chooserTitle: 'Example Chooser Title'
-                );
-              }, icon: SvgPicture.asset('images/share.svg'))
+                    chooserTitle: 'Share the Qr');
+              },
+              icon: SvgPicture.asset('images/share.svg'))
         ],
       ),
       body: Column(
@@ -70,9 +68,9 @@ class ResultScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Website',
-                  style: TextStyle(
+                Text(
+                  'Website'.tr,
+                  style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
@@ -80,7 +78,7 @@ class ResultScreen extends StatelessWidget {
                 ),
                 SizedBox(height: kDefaultPadding / 2),
                 TextButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     await launchUrl(Uri.parse(qr.url));
                   },
                   child: Text(
@@ -94,7 +92,7 @@ class ResultScreen extends StatelessWidget {
                 ),
                 SizedBox(height: kDefaultPadding / 2),
                 Text(
-                  'QR code scanned ${qr.time.day}/${qr.time.month}/${qr.time.year} - ${qr.time.hour}:${qr.time.minute}',
+                  'QR code scanned ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
                   style: TextStyle(
                     color: kSecondaryTextColor,
                     fontWeight: FontWeight.w500,
@@ -116,8 +114,8 @@ class ResultScreen extends StatelessWidget {
               children: [
                 AppRow(
                   icon: 'images/safari.svg',
-                  title: 'Open website',
-                  onTap: () async{
+                  title: 'open'.tr,
+                  onTap: () async {
                     await launchUrl(Uri.parse(qr.url));
                   },
                 ),
@@ -129,11 +127,11 @@ class ResultScreen extends StatelessWidget {
                       children: [
                         AppRow(
                           icon: 'images/earth-astronomy.svg',
-                          title: 'Copy website',
+                          title: 'copy'.tr,
                           onTap: () {
                             Clipboard.setData(ClipboardData(text: qr.url));
                             Get.snackbar(
-                              'Copy to Clipboard',
+                              'Copy to Clipboard'.tr,
                               qr.url,
                               backgroundColor: kPrimaryColor,
                               colorText: Colors.white,
@@ -145,10 +143,10 @@ class ResultScreen extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Clipboard.setData(ClipboardData(text: qr.url));
                         Get.snackbar(
-                          'Copy to Clipboard',
+                          'Copy to Clipboard'.tr,
                           qr.url,
                           backgroundColor: kPrimaryColor,
                           colorText: Colors.white,
@@ -170,13 +168,12 @@ class ResultScreen extends StatelessWidget {
                 SizedBox(height: kDefaultPadding),
                 AppRow(
                   icon: 'images/share.svg',
-                  title: 'Share',
+                  title: 'share'.tr,
                   onTap: () async {
                     await FlutterShare.share(
-                      title: 'Share the Qr',
+                        title: 'Share the Qr',
                         linkUrl: qr.url,
-                        chooserTitle: 'Example Chooser Title'
-                    );
+                        chooserTitle: 'Share the Qr');
                   },
                 )
               ],

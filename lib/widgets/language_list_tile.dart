@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
+import 'package:flutter_qr/view/locale/locale_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class LanguageListTile extends StatefulWidget {
   String icon;
@@ -17,6 +19,7 @@ class LanguageListTile extends StatefulWidget {
 }
 
 class _LanguageListTileState extends State<LanguageListTile> {
+  MyLocaleController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -39,7 +42,9 @@ class _LanguageListTileState extends State<LanguageListTile> {
         child: Row(
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                controller.changeLang('ar');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: kCircleColor,
                 shape: RoundedRectangleBorder(
@@ -60,7 +65,9 @@ class _LanguageListTileState extends State<LanguageListTile> {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                controller.changeLang('en');
+              },
               child: const Text('English'),
             ),
           ],
