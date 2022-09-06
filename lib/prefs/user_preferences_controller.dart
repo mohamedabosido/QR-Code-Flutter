@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_qr/controller/qr_controller.dart';
 import 'package:flutter_qr/model/qr_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,8 +28,8 @@ class UserPreferencesController {
           .map<QrCodeModel>((item) => QrCodeModel.fromJson(item))
           .toList();
 
-  void save() async {
-    final String encodedData = encode(QrController().history);
+  void save(List<QrCodeModel> history) async {
+    final String encodedData = encode(history);
 
     await _sharedPreferences.setString('historyArray', encodedData);
   }

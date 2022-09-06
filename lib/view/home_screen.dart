@@ -121,13 +121,13 @@ class _HomeScreenState extends State<HomeScreen> {
         result = scanData;
       });
       if (result != null) {
-        Get.toNamed('/result_screen');
         QrCodeModel qr = QrCodeModel(
           type: 'Qr Code',
           url: result!.code!,
           time: DateTime.now(),
         );
         QrController().add(qr: qr);
+        Get.to(() => ResultScreen(qr: qr));
       }
     });
   }

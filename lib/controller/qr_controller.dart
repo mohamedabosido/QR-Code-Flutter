@@ -3,18 +3,17 @@ import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:get/get.dart';
 
 class QrController extends GetxController {
-  List<QrCodeModel> history =
-      UserPreferencesController().getHistory();
+  List<QrCodeModel> history = UserPreferencesController().getHistory();
 
   void add({required QrCodeModel qr}) {
     history.add(qr);
     update();
-    UserPreferencesController().save();
+    UserPreferencesController().save(history);
   }
 
   void delete({required QrCodeModel qr}) {
     history.remove(qr);
     update();
-    UserPreferencesController().save();
+    UserPreferencesController().save(history);
   }
 }
