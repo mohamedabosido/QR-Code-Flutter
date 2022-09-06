@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_beep/flutter_beep.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/model/qr_model.dart';
+import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_qr/view/result_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -86,7 +88,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               .then((value) async {
                             String? result = await Scan.parse(value!.path);
                             saveQr(result!);
-                          });
+                            // ignore: invalid_return_type_for_catch_error
+                          }).catchError((onError) => {
+                                    Get.snackbar(
+                                        backgroundColor: Colors.red,
+                                        'Please Choose a valid Photo'.tr,
+                                        'Just Qr Code'.tr)
+                                  });
                         },
                         child: SvgPicture.asset('images/image-picture.svg')),
                     InkWell(
@@ -131,8 +139,23 @@ class _HomeScreenState extends State<HomeScreen> {
       url: result,
       time: DateTime.now(),
     );
-    FlutterBeep.beep();
-    Vibration.vibrate(duration: 2000);
+    if (UserPreferencesController().getSound()) {
+      FlutterBeep.beep();
+    }
+    if (UserPreferencesController().getVibrate()) {
+      Vibration.vibrate(duration: 2000);
+    }
+    if (UserPreferencesController().getCopyAlways()) {
+      Clipboard.setData(ClipboardData(text: qr.url));
+      Get.snackbar(
+        'Copy to Clipboard'.tr,
+        qr.url,
+        backgroundColor: kPrimaryColor,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        margin: EdgeInsets.all(kDefaultPadding),
+      );
+    }
     getController.add(qr: qr);
     Get.to(() => ResultScreen(qr: qr));
   }

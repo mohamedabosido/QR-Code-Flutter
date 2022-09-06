@@ -23,7 +23,9 @@ class MyLocale implements Translations {
           'copy': 'نسخ الموقع',
           'share': 'مشاركة',
           'Scan-code': 'مسح الكود',
-          'Deleted Qr Code': 'تم ازالة Qr '
+          'Deleted Qr Code': 'تم ازالة Qr ',
+          'Please Choose a valid Photo': 'الرجاء اضافة صورة صحيحة',
+          'Just Qr Code': 'فقط Qr كود',
         },
         'en': {
           'Scan': 'Scan',
@@ -45,7 +47,9 @@ class MyLocale implements Translations {
           'copy': 'Copy website',
           'share': 'Share',
           'Scan-code': 'Scan code',
-          'Deleted Qr Code': 'Deleted Qr Code'
+          'Deleted Qr Code': 'Deleted Qr Code',
+          'Please Choose a valid Photo': 'Please Choose a valid Photo',
+          'Just Qr Code': 'Just Qr Code',
         },
       };
 }
