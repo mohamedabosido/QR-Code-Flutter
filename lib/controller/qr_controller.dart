@@ -16,7 +16,7 @@ class QrController extends GetxController {
   void delete({required QrCodeModel qr}) {
     history.remove(qr);
     Get.snackbar(
-      'Deleted Qr Code',
+      'Deleted Qr Code'.tr,
       qr.url,
       backgroundColor: Colors.red,
       colorText: Colors.white,

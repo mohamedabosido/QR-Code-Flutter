@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/model/qr_model.dart';
+import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_qr/widgets/app_row.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,16 +28,18 @@ class HistoryResultScreen extends StatelessWidget {
             Get.back();
           },
           icon: Icon(
-            Icons.arrow_back_ios_new_outlined,
+            UserPreferencesController().getLangCode() == 'en'
+                ? Icons.arrow_back_ios_new_outlined
+                : Icons.arrow_back_ios,
             color: kIconColor,
           ),
         ),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: const Text(
-          'History',
-          style: TextStyle(
+        title: Text(
+          'History'.tr,
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w500,
           ),
@@ -70,9 +73,9 @@ class HistoryResultScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Website',
-                  style: TextStyle(
+                Text(
+                  'Website'.tr,
+                  style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
@@ -116,7 +119,7 @@ class HistoryResultScreen extends StatelessWidget {
               children: [
                 AppRow(
                   icon: 'images/safari.svg',
-                  title: 'Open website',
+                  title: 'open'.tr,
                   onTap: () async {
                     await launchUrl(Uri.parse(qr.url));
                   },
@@ -129,11 +132,11 @@ class HistoryResultScreen extends StatelessWidget {
                       children: [
                         AppRow(
                           icon: 'images/earth-astronomy.svg',
-                          title: 'Copy website',
+                          title: 'copy'.tr,
                           onTap: () {
                             Clipboard.setData(ClipboardData(text: qr.url));
                             Get.snackbar(
-                              'Copy to Clipboard',
+                              'Copy to Clipboard'.tr,
                               qr.url,
                               backgroundColor: kPrimaryColor,
                               colorText: Colors.white,
@@ -148,7 +151,7 @@ class HistoryResultScreen extends StatelessWidget {
                       onTap: () {
                         Clipboard.setData(ClipboardData(text: qr.url));
                         Get.snackbar(
-                          'Copy to Clipboard',
+                          'Copy to Clipboard'.tr,
                           qr.url,
                           backgroundColor: kPrimaryColor,
                           colorText: Colors.white,
@@ -170,7 +173,7 @@ class HistoryResultScreen extends StatelessWidget {
                 SizedBox(height: kDefaultPadding),
                 AppRow(
                   icon: 'images/share.svg',
-                  title: 'Share',
+                  title: 'share'.tr,
                   onTap: () async {
                     await FlutterShare.share(
                         title: 'Share the Qr',

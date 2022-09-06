@@ -92,6 +92,11 @@ flutter:
         - asset: fonts/Stolzl-Regular.ttf
         - asset: fonts/Stolzl-Bold.ttf
           weight: 700
+    - family: Changa
+      fonts:
+        - asset: fonts/Changa-Regular.ttf
+        - asset: fonts/Changa-Bold.ttf
+          weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -11,9 +11,8 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await UserPreferencesController().initSharePreferences();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: kPrimaryColor, // navigation bar color
-    // statusBarColor: Colors.transparent, // status bar color
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.black, // navigation bar color
   ));
   runApp(const MyApp());
 }
@@ -23,10 +22,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MyLocaleController());
+    MyLocaleController controller = Get.put(MyLocaleController());
     return GetMaterialApp(
       theme: ThemeData(
-        fontFamily: 'Stolzl',
+        fontFamily: UserPreferencesController().getLangCode() == 'en'
+            ? 'Stolzl'
+            : 'Changa',
         iconTheme: IconThemeData(
           color: kIconColor,
         ),
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter QR',
       initialRoute: '/lunch_screen',
-      locale: Get.deviceLocale,
+      locale: controller.initLang,
       translations: MyLocale(),
       getPages: [
         GetPage(name: '/lunch_screen', page: () => const LunchScreen()),

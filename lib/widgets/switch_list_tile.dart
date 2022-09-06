@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
+import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppSwitchListTile extends StatefulWidget {
@@ -51,6 +52,19 @@ class _AppSwitchListTileState extends State<AppSwitchListTile> {
           setState(() {
             widget.value = value;
           });
+          switch (widget.title) {
+            case 'Sound':
+            case 'الصوت':
+              UserPreferencesController().setSound();
+              break;
+            case 'Vibrate':
+            case 'الاهتزاز':
+              UserPreferencesController().setVibrate();
+              break;
+            case 'Copy to clipboard':
+            case 'نسخ إلى الحافظة':
+              UserPreferencesController().setCopyAlways();
+          }
         },
       ),
     );

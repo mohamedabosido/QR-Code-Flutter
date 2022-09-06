@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/model/qr_model.dart';
+import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_qr/widgets/app_row.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +26,9 @@ class ResultScreen extends StatelessWidget {
             Get.back();
           },
           icon: Icon(
-            Icons.arrow_back_ios_new_outlined,
+            UserPreferencesController().getLangCode() == 'en'
+                ? Icons.arrow_back_ios_new_outlined
+                : Icons.arrow_back_ios,
             color: kIconColor,
           ),
         ),
@@ -43,7 +46,7 @@ class ResultScreen extends StatelessWidget {
           IconButton(
               onPressed: () async {
                 await FlutterShare.share(
-                    title: 'Share the Qr',
+                    title: 'share'.tr,
                     linkUrl: qr.url,
                     chooserTitle: 'Share the Qr');
               },

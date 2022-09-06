@@ -1,5 +1,4 @@
 import 'package:flutter/animation.dart';
-import 'package:flutter_qr/model/qr_model.dart';
 
 double kDefaultPadding = 16.0;
 Color kPrimaryColor = const Color(0xFF37BD6B);

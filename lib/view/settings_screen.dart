@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
+import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_qr/widgets/custom_app_list_tile.dart';
 import 'package:flutter_qr/widgets/language_list_tile.dart';
 import 'package:flutter_qr/widgets/switch_list_tile.dart';
@@ -32,19 +33,19 @@ class SettingsScreen extends StatelessWidget {
             icon: 'images/settings_icon.svg',
             title: 'Sound'.tr,
             subTitle: 'Beep when scanned'.tr,
-            value: true,
+            value: UserPreferencesController().getSound(),
           ),
           AppSwitchListTile(
             icon: 'images/settings_icon.svg',
             title: 'Vibrate'.tr,
             subTitle: 'Vibrate when scanned'.tr,
-            value: false,
+            value: UserPreferencesController().getVibrate(),
           ),
           AppSwitchListTile(
             icon: 'images/settings_icon.svg',
             title: 'Copy to clipboard'.tr,
             subTitle: 'Auto-copy scanned QR result'.tr,
-            value: false,
+            value: UserPreferencesController().getCopyAlways(),
           ),
           SizedBox(height: kDefaultPadding),
           Divider(

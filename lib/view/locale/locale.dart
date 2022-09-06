@@ -11,7 +11,7 @@ class MyLocale implements Translations {
           'Result': 'النتيجة',
           'Website': 'الموقع',
           'Vibrate': 'الاهتزاز',
-          'Copy to clipboard': 'نسخ إلى الحافظة',
+          'Copy to Clipboard': 'نسخ إلى الحافظة',
           'Beep when scanned': 'صفير عند مسحها ضوئيًا',
           'Vibrate when scanned': 'الاهتزاز عند المسح الضوئي',
           'Auto-copy scanned QR result': 'نسخ تلقائي نتيجة QR الممسوحة ضوئيًا',
@@ -21,8 +21,9 @@ class MyLocale implements Translations {
           'made': 'صنع بحب ❤️ بواسطة ',
           'open': 'فتح الموقع',
           'copy': 'نسخ الموقع',
-          'share ': 'مشاركة',
+          'share': 'مشاركة',
           'Scan-code': 'مسح الكود',
+          'Deleted Qr Code': 'تم ازالة Qr '
         },
         'en': {
           'Scan': 'Scan',
@@ -44,6 +45,7 @@ class MyLocale implements Translations {
           'copy': 'Copy website',
           'share': 'Share',
           'Scan-code': 'Scan code',
+          'Deleted Qr Code': 'Deleted Qr Code'
         },
       };
 }

@@ -41,4 +41,36 @@ class UserPreferencesController {
       return decode(_sharedPreferences.getString('historyArray') ?? '');
     }
   }
+
+  Future setLangCode(String langCode) async {
+    await _sharedPreferences.setString('codeLang', langCode);
+  }
+
+  String getLangCode() {
+    return _sharedPreferences.getString('codeLang') ?? 'en';
+  }
+
+  Future setSound() async {
+    await _sharedPreferences.setBool('sound', !getSound());
+  }
+
+  bool getSound() {
+    return _sharedPreferences.getBool('sound') ?? true;
+  }
+
+  Future setVibrate() async {
+    await _sharedPreferences.setBool('vibrate', !getVibrate());
+  }
+
+  bool getVibrate() {
+    return _sharedPreferences.getBool('vibrate') ?? true;
+  }
+
+  Future setCopyAlways() async {
+    await _sharedPreferences.setBool('copy', !getCopyAlways());
+  }
+
+  bool getCopyAlways() {
+    return _sharedPreferences.getBool('copy') ?? false;
+  }
 }
