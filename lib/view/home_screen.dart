@@ -84,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     InkWell(
                         onTap: () async {
+                          controller!.resumeCamera();
                           await _picker
                               .pickImage(source: ImageSource.gallery)
                               .then((value) async {
@@ -177,5 +178,11 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     getController.add(qr: qr);
     Get.to(() => ResultScreen(qr: qr));
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
   }
 }

@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter QR',
+      title: 'QR Code Scanner',
       initialRoute: '/lunch_screen',
       locale: controller.initLang,
       translations: MyLocale(),
