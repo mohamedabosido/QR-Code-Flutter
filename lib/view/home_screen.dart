@@ -32,10 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void reassemble() {
     super.reassemble();
-    if (Platform.isAndroid) {
-      controller!.pauseCamera();
-    } else if (Platform.isIOS) {
+    if (Platform.isIOS) {
       controller!.resumeCamera();
+    } else if (Platform.isAndroid) {
+      controller!.pauseCamera();
     }
   }
 
@@ -88,14 +88,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               .pickImage(source: ImageSource.gallery)
                               .then((value) async {
                             String? result = await Scan.parse(value!.path);
-                            saveQr(result!);
+                            saveQr(result: result!);
                             // ignore: invalid_return_type_for_catch_error
                           }).catchError((onError) => {
                                     Get.snackbar(
-                                        backgroundColor: Colors.red,
-                                        'Please Choose a valid Photo'.tr,
-                                        'Just Qr Code'.tr,
-                                    colorText: Colors.white,
+                                      backgroundColor: Colors.red,
+                                      'Please Choose a valid Photo'.tr,
+                                      'Just Qr Code'.tr,
+                                      colorText: Colors.white,
                                     )
                                   });
                         },
@@ -103,10 +103,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     InkWell(
                         onTap: () async {
                           await controller!.toggleFlash();
+                          setState(() {});
                         },
-                        child: SvgPicture.asset(
-                          'images/flash.svg',
-                          color: kPrimaryColor,
+                        child: FutureBuilder(
+                          future: controller?.getFlashStatus(),
+                          builder: (context, snapshot) {
+                            return SvgPicture.asset(
+                              'images/flash.svg',
+                              color: snapshot.data ?? false
+                                  ? kPrimaryColor
+                                  : Colors.red,
+                            );
+                          },
                         ))
                   ],
                 ),
@@ -137,21 +145,16 @@ class _HomeScreenState extends State<HomeScreen> {
       });
       controller.stopCamera();
       if (result != null) {
-        saveQr(result!.code!);
+        saveQr(
+            result: result!.code!,
+            type: result!.format.formatName.capitalizeFirst);
       }
     });
-
   }
 
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
-
-  void saveQr(String result) {
+  void saveQr({required String result, type = 'Qr Code'}) {
     QrCodeModel qr = QrCodeModel(
-      type: 'Qr Code',
+      type: type,
       url: result,
       time: DateTime.now(),
     );

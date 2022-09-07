@@ -5,7 +5,7 @@
 
     <application
         android:usesCleartextTraffic="true"
-        android:label="flutter_qr"
+        android:label="QR Code Scanner"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
