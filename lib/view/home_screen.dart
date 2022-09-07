@@ -10,6 +10,7 @@ import 'package:flutter_qr/view/result_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_qr/controller/qr_controller.dart';
 import 'package:scan/scan.dart';
@@ -93,7 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Get.snackbar(
                                         backgroundColor: Colors.red,
                                         'Please Choose a valid Photo'.tr,
-                                        'Just Qr Code'.tr)
+                                        'Just Qr Code'.tr,
+                                    colorText: Colors.white,
+                                    )
                                   });
                         },
                         child: SvgPicture.asset('images/image-picture.svg')),
@@ -109,6 +112,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            Positioned(
+              child: Center(
+                child: SizedBox(
+                  width: 250,
+                  height: 250,
+                  child: Lottie.asset(
+                    'images/scan.json',
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -121,10 +135,12 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         result = scanData;
       });
+      controller.stopCamera();
       if (result != null) {
         saveQr(result!.code!);
       }
     });
+
   }
 
   @override

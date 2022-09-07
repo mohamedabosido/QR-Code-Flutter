@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/prefs/user_preferences_controller.dart';
-import 'package:flutter_qr/view/locale/locale_controller.dart';
+import 'package:flutter_qr/locale/locale_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
