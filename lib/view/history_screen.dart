@@ -67,7 +67,9 @@ class HistoryScreen extends StatelessWidget {
                               radius: 40,
                               backgroundColor: kCircleColor,
                               child: Image.asset(
-                                'images/qr_code.png',
+                                controller.history[index].type == 'product'
+                                    ? 'images/bar_code.png'
+                                    : 'images/qr_code.png',
                                 width: 20,
                                 height: 20,
                               ),
@@ -78,7 +80,7 @@ class HistoryScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500, fontSize: 16),
                             ),
                             subtitle: Text(
-                              '${controller.history[index].type} - website - ${controller.history[index].time!.day}/${controller.history[index].time!.month}/${controller.history[index].time!.year} - ${controller.history[index].time!.hour}:${controller.history[index].time!.minute}',
+                              '${controller.history[index].type} - ${"scanned".tr} - ${controller.history[index].time!.day}/${controller.history[index].time!.month}/${controller.history[index].time!.year} - ${controller.history[index].time!.hour}:${controller.history[index].time!.minute}',
                               style: TextStyle(
                                   color: kSecondaryTextColor, fontSize: 12),
                             ),

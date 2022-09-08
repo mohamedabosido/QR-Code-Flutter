@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/model/qr_model.dart';
@@ -74,7 +72,7 @@ class HistoryResultScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Website'.tr,
+                  qr.type,
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -84,7 +82,19 @@ class HistoryResultScreen extends StatelessWidget {
                 SizedBox(height: kDefaultPadding / 2),
                 TextButton(
                   onPressed: () async {
-                    await launchUrl(Uri.parse(qr.url));
+                    if (qr.type == 'Qr Code') {
+                      await launchUrl(Uri.parse(qr.url));
+                    } else {
+                      Clipboard.setData(ClipboardData(text: qr.url));
+                      Get.snackbar(
+                        'Copy to Clipboard'.tr,
+                        qr.url,
+                        backgroundColor: kPrimaryColor,
+                        colorText: Colors.white,
+                        snackPosition: SnackPosition.BOTTOM,
+                        margin: EdgeInsets.all(kDefaultPadding),
+                      );
+                    }
                   },
                   child: Text(
                     qr.url,
@@ -97,7 +107,7 @@ class HistoryResultScreen extends StatelessWidget {
                 ),
                 SizedBox(height: kDefaultPadding / 2),
                 Text(
-                  'QR code scanned ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
+                  '${qr.type} ${"scanned".tr} ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
                   style: TextStyle(
                     color: kSecondaryTextColor,
                     fontWeight: FontWeight.w500,
@@ -121,7 +131,19 @@ class HistoryResultScreen extends StatelessWidget {
                   icon: 'images/safari.svg',
                   title: 'open'.tr,
                   onTap: () async {
-                    await launchUrl(Uri.parse(qr.url));
+                    if (qr.type == 'Qr Code') {
+                      await launchUrl(Uri.parse(qr.url));
+                    } else {
+                      Clipboard.setData(ClipboardData(text: qr.url));
+                      Get.snackbar(
+                        'Copy to Clipboard'.tr,
+                        qr.url,
+                        backgroundColor: kPrimaryColor,
+                        colorText: Colors.white,
+                        snackPosition: SnackPosition.BOTTOM,
+                        margin: EdgeInsets.all(kDefaultPadding),
+                      );
+                    }
                   },
                 ),
                 SizedBox(height: kDefaultPadding),

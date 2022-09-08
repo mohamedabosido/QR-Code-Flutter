@@ -72,7 +72,7 @@ class ResultScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Website'.tr,
+                  qr.type,
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -95,7 +95,7 @@ class ResultScreen extends StatelessWidget {
                 ),
                 SizedBox(height: kDefaultPadding / 2),
                 Text(
-                  'QR code scanned ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
+                  '${qr.type} ${"scanned".tr} ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
                   style: TextStyle(
                     color: kSecondaryTextColor,
                     fontWeight: FontWeight.w500,

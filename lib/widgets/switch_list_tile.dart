@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/prefs/user_preferences_controller.dart';
@@ -43,10 +44,10 @@ class _AppSwitchListTileState extends State<AppSwitchListTile> {
         widget.subTitle,
         style: TextStyle(color: kSecondaryTextColor, fontSize: 12),
       ),
-      trailing: Switch(
-        activeColor: Colors.white,
-        activeTrackColor: kPrimaryColor,
-        inactiveTrackColor: kCircleColor,
+      trailing: CupertinoSwitch(
+        thumbColor: Colors.white,
+        trackColor: kCircleColor,
+        activeColor: kPrimaryColor,
         value: widget.value,
         onChanged: (value) {
           setState(() {

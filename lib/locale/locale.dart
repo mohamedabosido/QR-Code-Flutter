@@ -19,13 +19,14 @@ class MyLocale implements Translations {
           'Privacy Policy': 'سياسة الخصوصية',
           'Version': 'الاصدار',
           'made': 'صنع بحب ❤️ بواسطة ',
-          'open': 'فتح الموقع',
-          'copy': 'نسخ الموقع',
+          'open': 'فتح',
+          'copy': 'نسخ',
           'share': 'مشاركة',
           'Scan-code': 'مسح الكود',
           'Deleted Qr Code': 'تم ازالة Qr ',
           'Please Choose a valid Photo': 'الرجاء اضافة صورة صحيحة',
           'Just Qr Code': 'فقط Qr كود',
+          'scanned': 'مسحت'
         },
         'en': {
           'Scan': 'Scan',
@@ -43,13 +44,14 @@ class MyLocale implements Translations {
           'Privacy Policy': 'Privacy Policy',
           'Version': 'Version',
           'made': 'made with ❤️ by ',
-          'open': 'Open website',
-          'copy': 'Copy website',
+          'open': 'Open',
+          'copy': 'Copy',
           'share': 'Share',
           'Scan-code': 'Scan code',
           'Deleted Qr Code': 'Deleted Qr Code',
           'Please Choose a valid Photo': 'Please Choose a valid Photo',
           'Just Qr Code': 'Just Qr Code',
+          'scanned': 'scanned'
         },
       };
 }

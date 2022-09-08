@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_beep/flutter_beep.dart';
@@ -39,10 +37,15 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           children: [
             MobileScanner(
-              allowDuplicates: true,
+              allowDuplicates: false,
               controller: cameraController,
               onDetect: (barcode, args) {
-                saveQr(result: barcode.rawValue!, type: barcode.format);
+                if (barcode.rawValue == null) {
+                  debugPrint('Failed to scan Barcode');
+                } else {
+                  cameraController.stop;
+                  saveQr(result: barcode.rawValue!, type: barcode.type.name);
+                }
               },
             ),
             Positioned(
@@ -116,14 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: const Color.fromARGB(255, 152, 241, 187)
-                          .withOpacity(0.4),
-                      width: 4,
+                      color: kPrimaryColor.withOpacity(0.4),
+                      width: 10,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  width: 200,
-                  height: 200,
+                  width: 250,
+                  height: 250,
                   child: Lottie.asset(
                     'images/scan.json',
                   ),
