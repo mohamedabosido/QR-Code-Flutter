@@ -40,6 +40,7 @@ class _LunchScreenState extends State<LunchScreen> {
             child: Text(
               'QR Code Scanner',
               style: TextStyle(
+                fontFamily: 'Stolzl',
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
