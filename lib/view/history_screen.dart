@@ -34,6 +34,7 @@ class HistoryScreen extends StatelessWidget {
             child: GetBuilder<QrController>(
               init: QrController(),
               builder: (controller) => ListView.builder(
+                reverse: true,
                 shrinkWrap: true,
                 itemCount: controller.history.length,
                 itemBuilder: (context, index) {

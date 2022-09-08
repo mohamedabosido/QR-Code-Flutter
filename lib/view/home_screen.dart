@@ -11,7 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter_qr/controller/qr_controller.dart';
 import 'package:scan/scan.dart';
 import 'package:vibration/vibration.dart';
@@ -24,20 +24,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  Barcode? result;
-  QRViewController? controller;
   final ImagePicker _picker = ImagePicker();
 
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isIOS) {
-      controller!.resumeCamera();
-    } else if (Platform.isAndroid) {
-      controller!.pauseCamera();
-    }
-  }
+  MobileScannerController cameraController = MobileScannerController();
 
   QrController getController = Get.find();
 
@@ -49,16 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
         height: MediaQuery.of(context).size.height - 59,
         child: Stack(
           children: [
-            QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
-              overlay: QrScannerOverlayShape(
-                borderColor: kPrimaryColor,
-                borderRadius: 20,
-                borderLength: 40,
-                borderWidth: 10,
-                cutOutSize: 250,
-              ),
+            MobileScanner(
+              allowDuplicates: true,
+              controller: cameraController,
+              onDetect: (barcode, args) {
+                saveQr(result: barcode.rawValue!, type: barcode.format);
+              },
             ),
             Positioned(
               left: 120,
@@ -84,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     InkWell(
                         onTap: () async {
-                          controller!.resumeCamera();
                           await _picker
                               .pickImage(source: ImageSource.gallery)
                               .then((value) async {
@@ -102,19 +86,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: SvgPicture.asset('images/image-picture.svg')),
                     InkWell(
-                        onTap: () async {
-                          await controller!.toggleFlash();
+                        onTap: () {
+                          cameraController.toggleTorch();
                           setState(() {});
                         },
-                        child: FutureBuilder(
-                          future: controller?.getFlashStatus(),
-                          builder: (context, snapshot) {
-                            return SvgPicture.asset(
-                              'images/flash.svg',
-                              color: snapshot.data ?? false
-                                  ? kPrimaryColor
-                                  : Colors.red,
-                            );
+                        child: ValueListenableBuilder(
+                          valueListenable: cameraController.torchState,
+                          builder: (context, state, child) {
+                            switch (state) {
+                              case TorchState.off:
+                                return SvgPicture.asset(
+                                  'images/flash.svg',
+                                  color: Colors.red,
+                                );
+                              case TorchState.on:
+                                return SvgPicture.asset(
+                                  'images/flash.svg',
+                                  color: kPrimaryColor,
+                                );
+                            }
                           },
                         ))
                   ],
@@ -123,9 +113,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Positioned(
               child: Center(
-                child: SizedBox(
-                  width: 250,
-                  height: 250,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 152, 241, 187)
+                          .withOpacity(0.4),
+                      width: 4,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  width: 200,
+                  height: 200,
                   child: Lottie.asset(
                     'images/scan.json',
                   ),
@@ -136,21 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
-      controller.stopCamera();
-      if (result != null) {
-        saveQr(
-            result: result!.code!,
-            type: result!.format.formatName.capitalizeFirst);
-      }
-    });
   }
 
   void saveQr({required String result, type = 'Qr Code'}) {
@@ -182,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    cameraController.dispose();
     super.dispose();
   }
 }
