@@ -138,12 +138,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void saveQr({required String result, type = 'Qr Code'}) {
+  void saveQr({required String result, type = 'url'}) {
     QrCodeModel qr = QrCodeModel(
       type: type,
       url: result,
       time: DateTime.now(),
     );
+    Get.offAll(() => ResultScreen(qr: qr));
     if (UserPreferencesController().getSound()) {
       FlutterBeep.beep();
     }
@@ -162,7 +163,6 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
     getController.add(qr: qr);
-    Get.to(() => ResultScreen(qr: qr));
   }
 
   @override

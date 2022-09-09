@@ -23,7 +23,7 @@ class ResultScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-            Get.back();
+            Get.toNamed('/main_screen');
           },
           icon: Icon(
             UserPreferencesController().getLangCode() == 'en'
@@ -46,9 +46,9 @@ class ResultScreen extends StatelessWidget {
           IconButton(
               onPressed: () async {
                 await FlutterShare.share(
-                    title: 'share'.tr,
+                    title: 'Share the Qr',
                     linkUrl: qr.url,
-                    chooserTitle: 'Share the Qr');
+                    chooserTitle: 'Example Chooser Title');
               },
               icon: SvgPicture.asset('images/share.svg'))
         ],
@@ -82,10 +82,28 @@ class ResultScreen extends StatelessWidget {
                 SizedBox(height: kDefaultPadding / 2),
                 TextButton(
                   onPressed: () async {
-                    await launchUrl(Uri.parse(qr.url));
+                    if (qr.type == 'url') {
+                      await launchUrl(Uri.parse(qr.url));
+                    } else {
+                      Clipboard.setData(ClipboardData(text: qr.url));
+                      Get.snackbar(
+                        'Copy to Clipboard'.tr,
+                        qr.type == 'wifi'
+                            ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                            : qr.url,
+                        backgroundColor: kPrimaryColor,
+                        colorText: Colors.white,
+                        snackPosition: SnackPosition.BOTTOM,
+                        margin: EdgeInsets.all(kDefaultPadding),
+                      );
+                    }
                   },
                   child: Text(
-                    qr.url,
+                    qr.type == 'wifi'
+                        ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                        : qr.type == 'wifi'
+                            ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                            : qr.url,
                     style: const TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w500,
@@ -119,7 +137,21 @@ class ResultScreen extends StatelessWidget {
                   icon: 'images/safari.svg',
                   title: 'open'.tr,
                   onTap: () async {
-                    await launchUrl(Uri.parse(qr.url));
+                    if (qr.type == 'url') {
+                      await launchUrl(Uri.parse(qr.url));
+                    } else {
+                      Clipboard.setData(ClipboardData(text: qr.url));
+                      Get.snackbar(
+                        'Copy to Clipboard'.tr,
+                        qr.type == 'wifi'
+                            ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                            : qr.url,
+                        backgroundColor: kPrimaryColor,
+                        colorText: Colors.white,
+                        snackPosition: SnackPosition.BOTTOM,
+                        margin: EdgeInsets.all(kDefaultPadding),
+                      );
+                    }
                   },
                 ),
                 SizedBox(height: kDefaultPadding),
@@ -135,7 +167,9 @@ class ResultScreen extends StatelessWidget {
                             Clipboard.setData(ClipboardData(text: qr.url));
                             Get.snackbar(
                               'Copy to Clipboard'.tr,
-                              qr.url,
+                              qr.type == 'wifi'
+                                  ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                                  : qr.url,
                               backgroundColor: kPrimaryColor,
                               colorText: Colors.white,
                               snackPosition: SnackPosition.BOTTOM,
@@ -150,7 +184,9 @@ class ResultScreen extends StatelessWidget {
                         Clipboard.setData(ClipboardData(text: qr.url));
                         Get.snackbar(
                           'Copy to Clipboard'.tr,
-                          qr.url,
+                          qr.type == 'wifi'
+                              ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                              : qr.url,
                           backgroundColor: kPrimaryColor,
                           colorText: Colors.white,
                           snackPosition: SnackPosition.BOTTOM,
@@ -175,8 +211,8 @@ class ResultScreen extends StatelessWidget {
                   onTap: () async {
                     await FlutterShare.share(
                         title: 'Share the Qr',
-                        linkUrl: qr.url,
-                        chooserTitle: 'Share the Qr');
+                        linkUrl: 'Share',
+                        chooserTitle: 'Example Chooser Title');
                   },
                 )
               ],

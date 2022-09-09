@@ -75,7 +75,9 @@ class HistoryScreen extends StatelessWidget {
                               ),
                             ),
                             title: Text(
-                              controller.history[index].url,
+                              controller.history[index].type == 'wifi'
+                                  ? 'Wifi: ${controller.history[index].url.split(';')[2].split(':')[1]}'
+                                  : controller.history[index].url,
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 16),
                             ),
