@@ -7,7 +7,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HistoryResultScreen extends StatelessWidget {
@@ -58,11 +58,15 @@ class HistoryResultScreen extends StatelessWidget {
         children: [
           Divider(color: kLineColor),
           Center(
-            child: QrImage(
-              data: qr.url,
-              version: QrVersions.auto,
-              size: 160.0,
-              backgroundColor: kCircleColor,
+            child: SizedBox(
+              width: 200,
+              height: 200,
+              child: qr.type == 'product'
+                  ? SfBarcodeGenerator(value: qr.url)
+                  : SfBarcodeGenerator(
+                      value: qr.url,
+                      symbology: QRCode(),
+                    ),
             ),
           ),
           SizedBox(height: kDefaultPadding * 2),
@@ -101,7 +105,9 @@ class HistoryResultScreen extends StatelessWidget {
                   child: Text(
                     qr.type == 'wifi'
                         ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
-                        : qr.url,
+                        : qr.type == 'wifi'
+                            ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                            : qr.url,
                     style: const TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w500,
