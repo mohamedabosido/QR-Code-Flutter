@@ -24,9 +24,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ImagePicker _picker = ImagePicker();
 
-  MobileScannerController cameraController = MobileScannerController();
+  late MobileScannerController cameraController;
 
   QrController getController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    cameraController = MobileScannerController();
+  }
 
   @override
   Widget build(BuildContext context) {
