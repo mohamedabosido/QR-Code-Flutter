@@ -49,8 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (barcode.rawValue == null) {
                   debugPrint('Failed to scan Barcode');
                 } else {
-                  cameraController.stop;
-                  saveQr(result: barcode.rawValue!, type: barcode.type.name);
+                  try {
+                    cameraController.stop;
+                    saveQr(result: barcode.rawValue!, type: barcode.type.name);
+                  } catch (e) {
+                    debugPrint(e.toString());
+                  }
                 }
               },
             ),
