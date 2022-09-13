@@ -62,7 +62,7 @@ class _AppSwitchListTileState extends State<AppSwitchListTile> {
             case 'الاهتزاز':
               UserPreferencesController().setVibrate();
               break;
-            case 'Copy to clipboard':
+            case 'Copy to Clipboard':
             case 'نسخ إلى الحافظة':
               UserPreferencesController().setCopyAlways();
           }
