@@ -43,7 +43,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           AppSwitchListTile(
             icon: 'images/settings_icon.svg',
-            title: 'Copy to clipboard'.tr,
+            title: 'Copy to Clipboard'.tr,
             subTitle: 'Auto-copy scanned QR result'.tr,
             value: UserPreferencesController().getCopyAlways(),
           ),
