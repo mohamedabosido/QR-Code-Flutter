@@ -24,15 +24,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ImagePicker _picker = ImagePicker();
 
-  late MobileScannerController cameraController;
+  late MobileScannerController cameraController = MobileScannerController();
 
   QrController getController = Get.find();
-
-  @override
-  void initState() {
-    super.initState();
-    cameraController = MobileScannerController();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,21 +40,20 @@ class _HomeScreenState extends State<HomeScreen> {
               allowDuplicates: false,
               controller: cameraController,
               onDetect: (barcode, args) {
-                if (barcode.rawValue == null) {
-                  debugPrint('Failed to scan Barcode');
-                } else {
-                  try {
-                    cameraController.stop;
+                try {
+                  if (barcode.rawValue != null) {
+                    cameraController.stop();
                     saveQr(result: barcode.rawValue!, type: barcode.type.name);
-                  } catch (e) {
-                    debugPrint(e.toString());
+                    return;
                   }
+                } catch (e) {
+                  debugPrint(e.toString());
                 }
               },
             ),
             Positioned(
-              left: 120,
-              right: 120,
+              left: 150,
+              right: 150,
               bottom: kDefaultPadding,
               child: Container(
                 margin: EdgeInsets.all(kDefaultPadding),
@@ -159,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
       FlutterBeep.beep();
     }
     if (UserPreferencesController().getVibrate()) {
-      Vibration.vibrate(duration: 2000);
+      Vibration.vibrate(duration: 1000);
     }
     if (UserPreferencesController().getCopyAlways()) {
       Clipboard.setData(ClipboardData(text: qr.url));

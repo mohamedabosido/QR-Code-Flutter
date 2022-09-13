@@ -23,7 +23,7 @@ class ResultScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-            Get.toNamed('/main_screen');
+            Get.offAllNamed('/main_screen');
           },
           icon: Icon(
             UserPreferencesController().getLangCode() == 'en'
@@ -76,7 +76,7 @@ class ResultScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  qr.type,
+                  qr.type.tr,
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -93,7 +93,7 @@ class ResultScreen extends StatelessWidget {
                       Get.snackbar(
                         'Copy to Clipboard'.tr,
                         qr.type == 'wifi'
-                            ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                            ? '${"password".tr}: ${qr.url.split(';')[1].split(':')[1]}'
                             : qr.url,
                         backgroundColor: kPrimaryColor,
                         colorText: Colors.white,
@@ -104,10 +104,8 @@ class ResultScreen extends StatelessWidget {
                   },
                   child: Text(
                     qr.type == 'wifi'
-                        ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
-                        : qr.type == 'wifi'
-                            ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
-                            : qr.url,
+                        ? '${"password".tr}: ${qr.url.split(';')[1].split(':')[1]}'
+                        : qr.url,
                     style: const TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w500,
@@ -117,7 +115,7 @@ class ResultScreen extends StatelessWidget {
                 ),
                 SizedBox(height: kDefaultPadding / 2),
                 Text(
-                  '${qr.type} ${"scanned".tr} ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
+                  '${qr.type.tr} ${"scanned".tr} ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
                   style: TextStyle(
                     color: kSecondaryTextColor,
                     fontWeight: FontWeight.w500,
@@ -148,7 +146,7 @@ class ResultScreen extends StatelessWidget {
                       Get.snackbar(
                         'Copy to Clipboard'.tr,
                         qr.type == 'wifi'
-                            ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                            ? '${"password".tr}: ${qr.url.split(';')[1].split(':')[1]}'
                             : qr.url,
                         backgroundColor: kPrimaryColor,
                         colorText: Colors.white,
@@ -172,7 +170,7 @@ class ResultScreen extends StatelessWidget {
                             Get.snackbar(
                               'Copy to Clipboard'.tr,
                               qr.type == 'wifi'
-                                  ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                                  ? '${"password".tr}: ${qr.url.split(';')[1].split(':')[1]}'
                                   : qr.url,
                               backgroundColor: kPrimaryColor,
                               colorText: Colors.white,
@@ -189,7 +187,7 @@ class ResultScreen extends StatelessWidget {
                         Get.snackbar(
                           'Copy to Clipboard'.tr,
                           qr.type == 'wifi'
-                              ? 'Password: ${qr.url.split(';')[1].split(':')[1]}'
+                              ? '${"password".tr}: ${qr.url.split(';')[1].split(':')[1]}'
                               : qr.url,
                           backgroundColor: kPrimaryColor,
                           colorText: Colors.white,

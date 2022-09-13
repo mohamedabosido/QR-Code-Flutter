@@ -81,13 +81,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             ),
                             title: Text(
                               controller.history[index].type == 'wifi'
-                                  ? 'Wifi: ${controller.history[index].url.split(';')[2].split(':')[1]}'
+                                  ? '${"wifi".tr}: ${controller.history[index].url.split(';')[2].split(':')[1]}'
                                   : controller.history[index].url,
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 16),
                             ),
                             subtitle: Text(
-                              '${controller.history[index].type} - ${"scanned".tr} - ${controller.history[index].time!.day}/${controller.history[index].time!.month}/${controller.history[index].time!.year} - ${controller.history[index].time!.hour}:${controller.history[index].time!.minute}',
+                              '${controller.history[index].type.tr} - ${"scanned".tr} - ${controller.history[index].time!.day}/${controller.history[index].time!.month}/${controller.history[index].time!.year} - ${controller.history[index].time!.hour}:${controller.history[index].time!.minute}',
                               style: TextStyle(
                                   color: kSecondaryTextColor, fontSize: 12),
                             ),

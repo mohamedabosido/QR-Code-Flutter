@@ -49,6 +49,7 @@ dependencies:
   vibration: ^1.7.6
   lottie: ^1.4.2
   mobile_scanner: ^2.0.0
+  responsive_framework: ^0.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

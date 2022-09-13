@@ -7,6 +7,7 @@ import 'package:flutter_qr/view/main_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter_qr/locale/locale.dart';
 import 'package:flutter_qr/locale/locale_controller.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     MyLocaleController controller = Get.put(MyLocaleController());
     return GetMaterialApp(
+      builder: (context, child) => ResponsiveWrapper.builder(
+        child,
+        maxWidth: 1200,
+        minWidth: 480,
+        defaultScale: true,
+        breakpoints: [
+          const ResponsiveBreakpoint.resize(480, name: MOBILE),
+          const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+          const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+        ],
+      ),
       theme: ThemeData(
         fontFamily: UserPreferencesController().getLangCode() == 'en'
             ? 'Stolzl'

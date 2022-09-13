@@ -26,7 +26,11 @@ class MyLocale implements Translations {
           'Deleted Qr Code': 'تم ازالة Qr ',
           'Please Choose a valid Photo': 'الرجاء اضافة صورة صحيحة',
           'Just Qr Code': 'فقط Qr كود',
-          'scanned': 'مسحت'
+          'scanned': 'مسحت',
+          'url': 'الموقع',
+          'product': 'المنتج',
+          'wifi': 'الشبكة',
+          'password': 'كلمة السر',
         },
         'en': {
           'Scan': 'Scan',
@@ -51,7 +55,11 @@ class MyLocale implements Translations {
           'Deleted Qr Code': 'Deleted Qr Code',
           'Please Choose a valid Photo': 'Please Choose a valid Photo',
           'Just Qr Code': 'Just Qr Code',
-          'scanned': 'scanned'
+          'scanned': 'scanned',
+          'url': 'Website',
+          'product': 'Product',
+          'wifi': 'Wifi',
+          'password': 'Password',
         },
       };
 }

@@ -18,7 +18,7 @@ class QrController extends GetxController {
     Get.snackbar(
       'Deleted Qr Code'.tr,
       qr.type == 'wifi'
-          ? 'Wifi: ${qr.url.split(';')[2].split(':')[1]}'
+          ? '${"wifi".tr}: ${qr.url.split(';')[2].split(':')[1]}'
           : qr.url,
       backgroundColor: Colors.red,
       colorText: Colors.white,
