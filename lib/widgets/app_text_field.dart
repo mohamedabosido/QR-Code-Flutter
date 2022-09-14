@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_qr/constant/constants.dart';
 
 class AppTextFiled extends StatelessWidget {
   String text;
@@ -14,20 +15,19 @@ class AppTextFiled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shadowColor: Colors.black,
-      child: TextField(
-        keyboardType: isPassword
-            ? TextInputType.visiblePassword
-            : TextInputType.emailAddress,
-        controller: controller,
-        obscureText: isPassword,
-        decoration: InputDecoration(
-          hintText: text,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide.none,
-          ),
+    return TextField(
+      keyboardType: isPassword
+          ? TextInputType.visiblePassword
+          : TextInputType.emailAddress,
+      controller: controller,
+      obscureText: isPassword,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: kLineColor,
+        hintText: text,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide.none,
         ),
       ),
     );
