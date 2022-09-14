@@ -15,7 +15,7 @@ class _LunchScreenState extends State<LunchScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Get.offAllNamed('/main_screen');
+      Get.offAllNamed('/login_screen');
     });
   }
 

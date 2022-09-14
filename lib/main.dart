@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/prefs/user_preferences_controller.dart';
+import 'package:flutter_qr/view/auth/login_screen.dart';
+import 'package:flutter_qr/view/auth/sign_up_screen.dart';
 import 'package:flutter_qr/view/lunch_screen.dart';
 import 'package:flutter_qr/view/main_screen.dart';
 import 'package:get/get.dart';
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
       translations: MyLocale(),
       getPages: [
         GetPage(name: '/lunch_screen', page: () => const LunchScreen()),
+        GetPage(name: '/login_screen', page: () => LoginScreen()),
+        GetPage(name: '/sign_up_screen', page: () => SignUpScreen()),
         GetPage(name: '/main_screen', page: () => const MainScreen()),
       ],
     );
