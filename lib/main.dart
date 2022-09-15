@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_qr/constant/constants.dart';
@@ -16,8 +17,9 @@ void main() async {
   await UserPreferencesController().initSharePreferences();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
-    systemNavigationBarColor: Colors.black, // navigation bar color
+    systemNavigationBarColor: Colors.black,
   ));
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

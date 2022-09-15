@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "291128137038",
+    "project_id": "qr-scanner-815fe",
+    "storage_bucket": "qr-scanner-815fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291128137038:android:9e441a3844c7497839ba1f",
+        "android_client_info": {
+          "package_name": "com.mo7amedsido.flutterQr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291128137038-kvcbdbo54oiikbvjhfpntnijprtjfejb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZlfjff1gJ9pXzZ0hrIHJg6DGh7L3F4L8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291128137038-kvcbdbo54oiikbvjhfpntnijprtjfejb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

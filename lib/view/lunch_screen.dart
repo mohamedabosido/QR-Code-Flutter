@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
+import 'package:flutter_qr/controller/fb_auth_controller.dart';
 import 'package:flutter_qr/controller/qr_controller.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,9 @@ class _LunchScreenState extends State<LunchScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Get.offAllNamed('/login_screen');
+      FbAuthController().loggedIn()
+          ? Get.offAllNamed('/main_screen')
+          : Get.offAllNamed('/login_screen');
     });
   }
 

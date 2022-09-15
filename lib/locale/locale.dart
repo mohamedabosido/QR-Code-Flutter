@@ -31,6 +31,22 @@ class MyLocale implements Translations {
           'product': 'المنتج',
           'wifi': 'الشبكة',
           'password': 'كلمة السر',
+          'logout': 'تسجيل خروج',
+          'login to your account': 'تسجيل دخول بحسابك',
+          'create a new account': 'انشاء حساب جديد',
+          'email': 'البريد الإلكتروني',
+          'confirm-password': 'تأكيد كلمة السر',
+          'signin': 'دخول',
+          'signup': 'تسجيل',
+          'dont have account': 'ليس لديك حساب؟',
+          'Please Enter All Required Data': 'الرجاء ادخال جميع الحقول المطلوبة',
+          'Check Your Email to Verify your Account':
+              'الرجاء فحص صندوق البريد لتأكيد الحساب',
+          'invalid-email': 'الرجاء التأكد من البريد الإالكتروني',
+          'user-disabled': 'هذا الحساب تم تعطيله',
+          'user-no-found': 'هذا الحساب غير موجود',
+          'wrong-password': 'الرجاء التأكد من كلمة السر',
+          'error': 'خطأ , الرجاء المحاولة مرة اخرى'
         },
         'en': {
           'Scan': 'Scan',
@@ -60,6 +76,22 @@ class MyLocale implements Translations {
           'product': 'Product',
           'wifi': 'Wifi',
           'password': 'Password',
+          'logout': 'Logout',
+          'login to your account': 'Login to your account',
+          'create a new account': 'Create a new account',
+          'email': 'Email',
+          'confirm-password': 'Confirm Password',
+          'signin': 'Sign In',
+          'signup': 'Sign Up',
+          'dont have account': 'Don\'t have an account?',
+          'Please Enter All Required Data': 'Please Enter All Required Data',
+          'Check Your Email to Verify your Account':
+              'Check Your Email to Verify your Account',
+          'invalid-email': 'Please Check your Email',
+          'user-disabled': 'This user has been disabled',
+          'user-no-found': 'This user not found',
+          'wrong-password': 'Please Check your Password',
+          'error': 'Error , Please Try again'
         },
       };
 }
