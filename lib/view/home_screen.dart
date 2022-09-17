@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_beep/flutter_beep.dart';
 import 'package:flutter_qr/constant/constants.dart';
+import 'package:flutter_qr/controller/fb_controller/fb_fire_store_controller.dart';
 import 'package:flutter_qr/model/qr_model.dart';
 import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_qr/view/result_screen.dart';
@@ -10,8 +12,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:flutter_qr/controller/qr_controller.dart';
 import 'package:scan/scan.dart';
+import 'package:uuid/uuid.dart';
 import 'package:vibration/vibration.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,8 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final ImagePicker _picker = ImagePicker();
 
   late MobileScannerController cameraController = MobileScannerController();
-
-  QrController getController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -142,11 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void saveQr({required String result, type = 'url'}) {
-    QrCodeModel qr = QrCodeModel(
-      type: type,
-      url: result,
-      time: DateTime.now(),
-    );
+    QrCodeModel qr =
+        QrCodeModel(url: result, type: type, time: Timestamp.now());
+    qr.id = const Uuid().v4();
     Get.offAll(() => ResultScreen(qr: qr));
     if (UserPreferencesController().getSound()) {
       FlutterBeep.beep();
@@ -165,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
         margin: EdgeInsets.all(kDefaultPadding),
       );
     }
-    getController.add(qr: qr);
+    FbFireStoreController().create(qr: qr);
   }
 
   @override

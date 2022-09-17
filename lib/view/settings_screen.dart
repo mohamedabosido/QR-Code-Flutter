@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
-import 'package:flutter_qr/controller/fb_auth_controller.dart';
+import 'package:flutter_qr/controller/fb_controller/fb_auth_controller.dart';
 import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_qr/widgets/custom_app_list_tile.dart';
 import 'package:flutter_qr/widgets/language_list_tile.dart';

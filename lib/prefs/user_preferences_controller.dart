@@ -19,28 +19,28 @@ class UserPreferencesController {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  static String encode(List<QrCodeModel> qrs) => json.encode(
-        qrs.map<Map<String, dynamic>>((qr) => QrCodeModel.toMap(qr)).toList(),
-      );
+  // static String encode(List<QrCodeModel> qrs) => json.encode(
+  //       qrs.map<Map<String, dynamic>>((qr) => QrCodeModel.toMap(qr)).toList(),
+  //     );
 
-  static List<QrCodeModel> decode(String qr) =>
-      (json.decode(qr) as List<dynamic>)
-          .map<QrCodeModel>((item) => QrCodeModel.fromJson(item))
-          .toList();
+  // static List<QrCodeModel> decode(String qr) =>
+  //     (json.decode(qr) as List<dynamic>)
+  //         .map<QrCodeModel>((item) => QrCodeModel.fromJson(item))
+  //         .toList();
 
-  void save(List<QrCodeModel> history) async {
-    final String encodedData = encode(history);
+  // void save(List<QrCodeModel> history) async {
+  //   final String encodedData = encode(history);
 
-    await _sharedPreferences.setString('historyArray', encodedData);
-  }
+  //   await _sharedPreferences.setString('historyArray', encodedData);
+  // }
 
-  List<QrCodeModel> getHistory() {
-    if (_sharedPreferences.getString('historyArray') == null) {
-      return [];
-    } else {
-      return decode(_sharedPreferences.getString('historyArray') ?? '');
-    }
-  }
+  // List<QrCodeModel> getHistory() {
+  //   if (_sharedPreferences.getString('historyArray') == null) {
+  //     return [];
+  //   } else {
+  //     return decode(_sharedPreferences.getString('historyArray') ?? '');
+  //   }
+  // }
 
   Future setLangCode(String langCode) async {
     await _sharedPreferences.setString('codeLang', langCode);

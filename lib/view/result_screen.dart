@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class ResultScreen extends StatelessWidget {
   QrCodeModel qr;
 
@@ -17,6 +18,7 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime time = (qr.time).toDate();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -115,7 +117,7 @@ class ResultScreen extends StatelessWidget {
                 ),
                 SizedBox(height: kDefaultPadding / 2),
                 Text(
-                  '${qr.type.tr} ${"scanned".tr} ${qr.time!.day}/${qr.time!.month}/${qr.time!.year} - ${qr.time!.hour}:${qr.time!.minute}',
+                  '${qr.type.tr} - ${"scanned".tr} - ${time.day}/${time.month}/${time.year} - ${time.hour}:${time.minute}',
                   style: TextStyle(
                     color: kSecondaryTextColor,
                     fontWeight: FontWeight.w500,

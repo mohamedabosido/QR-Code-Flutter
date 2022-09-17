@@ -1,26 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class QrCodeModel {
-  String type;
-  String url;
-  DateTime? time;
+  late String id;
+  late String type;
+  late String url;
+  late Timestamp time;
 
   QrCodeModel({
-    required this.type,
     required this.url,
+    required this.type,
     required this.time,
   });
 
-  factory QrCodeModel.fromJson(Map<String, dynamic> jsonData) {
-    return QrCodeModel(
-      type: jsonData['type'],
-      url: jsonData['url'],
-      time: jsonData['time'] == null ? null : DateTime.parse(jsonData["time"]),
-    );
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = <String, dynamic>{};
+    map['id'] = id;
+    map['type'] = type;
+    map['url'] = url;
+    map['time'] = time;
+    return map;
   }
 
-  static Map<String, dynamic> toMap(QrCodeModel qr) => {
-        'type': qr.type,
-        'url': qr.url,
-        // ignore: prefer_null_aware_operators
-        'time': qr.time == null ? null : qr.time!.toIso8601String(),
-      };
+  QrCodeModel.fromJson(Map<dynamic, dynamic> map) {
+    id = map['id'];
+    type = map['type'];
+    url = map['url'];
+    time = map['time'];
+  }
 }
