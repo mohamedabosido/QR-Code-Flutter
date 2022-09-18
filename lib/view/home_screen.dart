@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +17,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scan/scan.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vibration/vibration.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -141,9 +144,26 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void saveQr({required String result, type = 'url'}) {
+  Future<String?> shortenUrl({required String url}) async {
+    try {
+      var uri = Uri.parse('https://cleanuri.com/api/v1/shorten');
+      final result = await http.post(uri, body: {
+        'url': url,
+      });
+      if (result.statusCode == 200) {
+        final jsonResult = jsonDecode(result.body);
+        return jsonResult['result_url'];
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return null;
+  }
+
+  void saveQr({required String result, type = 'url'}) async {
+    final shortenLink = await shortenUrl(url: result);
     QrCodeModel qr =
-        QrCodeModel(url: result, type: type, time: Timestamp.now());
+        QrCodeModel(url: shortenLink!, type: type, time: Timestamp.now());
     qr.id = const Uuid().v4();
     Get.offAll(() => ResultScreen(qr: qr));
     if (UserPreferencesController().getSound()) {
