@@ -17,7 +17,7 @@ class _LunchScreenState extends State<LunchScreen> {
     Future.delayed(const Duration(seconds: 2), () {
       FbAuthController().loggedIn()
           ? Get.offAllNamed('/main_screen')
-          : Get.offAllNamed('/login_screen');
+          : Get.offAllNamed('/auth_screen');
     });
   }
 

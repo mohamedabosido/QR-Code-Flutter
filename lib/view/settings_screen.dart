@@ -76,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
             trailing: IconButton(
               onPressed: () async {
                 await FbAuthController().signOut();
-                Get.offAllNamed('/login_screen');
+                Get.offAllNamed('/auth_screen');
               },
               icon: Icon(
                 Icons.arrow_forward_ios_outlined,

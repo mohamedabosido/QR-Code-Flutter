@@ -1,23 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
-import 'package:flutter_qr/controller/fb_controller/fb_auth_controller.dart';
-import 'package:flutter_qr/widgets/app_app_bar.dart';
 import 'package:flutter_qr/widgets/app_button.dart';
 import 'package:flutter_qr/widgets/app_text_field.dart';
 import 'package:get/get.dart';
+import 'package:flutter_qr/widgets/app_app_bar.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgetPasswordScreen extends StatefulWidget {
+  const ForgetPasswordScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
 
   bool loading = false;
 
@@ -43,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Align(
                       alignment: AlignmentDirectional.topStart,
                       child: Text(
-                        'signin'.tr,
+                        'forget-password'.tr,
                         style: const TextStyle(
                           fontSize: 28,
                           color: Colors.black,
@@ -55,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Align(
                       alignment: AlignmentDirectional.topStart,
                       child: Text(
-                        'signin-sub'.tr,
+                        'forget-sub'.tr,
                         style:
                             TextStyle(fontSize: 16, color: kSecondaryTextColor),
                       ),
@@ -71,45 +68,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: kDefaultPadding / 2),
                     AppTextFiled(
-                        text: 'enter-email'.tr,
-                        isPassword: false,
-                        controller: emailController),
+                        text: 'enter-email'.tr, controller: emailController),
                     SizedBox(height: kDefaultPadding * 1.5),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'password'.tr,
-                        style:
-                            TextStyle(fontSize: 14, color: kSecondaryTextColor),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    AppTextFiled(
-                        text: 'enter-password'.tr,
-                        isPassword: true,
-                        controller: passwordController),
-                    SizedBox(height: kDefaultPadding),
-                    Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: TextButton(
-                        onPressed: () {
-                          Get.toNamed('/forget_password_screen');
-                        },
-                        child: Text(
-                          'forget-password'.tr,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding),
                     AppButton(
                       onPressed: () async {
-                        if (await performLogin()) {
-                          Get.offAllNamed('/main_screen');
+                        if (1 == 1) {
+                          Get.toNamed('/verify_screen');
                         } else {
                           setState(() {
                             loading = false;
@@ -118,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       color: kPrimaryColor,
                       child: Text(
-                        'signin'.tr,
+                        'send'.tr,
                         style: const TextStyle(fontSize: 18),
                       ),
                     ),
@@ -129,15 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
           );
   }
 
-  Future<bool> performLogin() async {
-    if (checkData()) {
-      return await login();
-    }
-    return false;
-  }
-
   bool checkData() {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+    if (emailController.text.isNotEmpty) {
       setState(() {
         loading = true;
       });
@@ -152,13 +109,5 @@ class _LoginScreenState extends State<LoginScreen> {
       margin: EdgeInsets.all(kDefaultPadding),
     );
     return false;
-  }
-
-  Future<bool> login() async {
-    bool status = await FbAuthController().signIn(
-      email: emailController.text,
-      password: passwordController.text,
-    );
-    return status;
   }
 }

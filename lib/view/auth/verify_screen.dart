@@ -1,23 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
-import 'package:flutter_qr/controller/fb_controller/fb_auth_controller.dart';
+import 'package:flutter_qr/prefs/user_preferences_controller.dart';
 import 'package:flutter_qr/widgets/app_app_bar.dart';
 import 'package:flutter_qr/widgets/app_button.dart';
 import 'package:flutter_qr/widgets/app_text_field.dart';
+import 'package:flutter_qr/widgets/code_text_field.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class VerifyScreen extends StatefulWidget {
+  const VerifyScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<VerifyScreen> createState() => _VerifyScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _VerifyScreenState extends State<VerifyScreen> {
   TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
 
   bool loading = false;
 
@@ -43,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Align(
                       alignment: AlignmentDirectional.topStart,
                       child: Text(
-                        'signin'.tr,
+                        'enter-code'.tr,
                         style: const TextStyle(
                           fontSize: 28,
                           color: Colors.black,
@@ -55,60 +54,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     Align(
                       alignment: AlignmentDirectional.topStart,
                       child: Text(
-                        'signin-sub'.tr,
-                        style:
-                            TextStyle(fontSize: 16, color: kSecondaryTextColor),
+                        '+970 599487724',
+                        style: TextStyle(fontSize: 20, color: kPrimaryColor),
                       ),
                     ),
                     SizedBox(height: kDefaultPadding * 2),
                     Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'email'.tr,
-                        style:
-                            TextStyle(fontSize: 14, color: kSecondaryTextColor),
+                      alignment: AlignmentDirectional.center,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CodeTextField(controller: emailController),
+                          CodeTextField(controller: emailController),
+                          CodeTextField(controller: emailController),
+                          CodeTextField(controller: emailController),
+                          CodeTextField(controller: emailController),
+                        ],
                       ),
                     ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    AppTextFiled(
-                        text: 'enter-email'.tr,
-                        isPassword: false,
-                        controller: emailController),
                     SizedBox(height: kDefaultPadding * 1.5),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'password'.tr,
-                        style:
-                            TextStyle(fontSize: 14, color: kSecondaryTextColor),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    AppTextFiled(
-                        text: 'enter-password'.tr,
-                        isPassword: true,
-                        controller: passwordController),
-                    SizedBox(height: kDefaultPadding),
-                    Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: TextButton(
-                        onPressed: () {
-                          Get.toNamed('/forget_password_screen');
-                        },
-                        child: Text(
-                          'forget-password'.tr,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding),
                     AppButton(
                       onPressed: () async {
-                        if (await performLogin()) {
+                        if (1 == 1) {
                           Get.offAllNamed('/main_screen');
                         } else {
                           setState(() {
@@ -118,8 +87,30 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       color: kPrimaryColor,
                       child: Text(
-                        'signin'.tr,
+                        'verify'.tr,
                         style: const TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    SizedBox(height: kDefaultPadding * 1.5),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: 'resend'.tr,
+                        style: TextStyle(
+                          color: kSecondaryTextColor,
+                          fontSize: 16,
+                          fontFamily:
+                              UserPreferencesController().getLangCode() == 'en'
+                                  ? 'Stolzl'
+                                  : 'Changa',
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '00:52',
+                            style:
+                                TextStyle(color: kPrimaryColor, fontSize: 16),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -129,15 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
           );
   }
 
-  Future<bool> performLogin() async {
-    if (checkData()) {
-      return await login();
-    }
-    return false;
-  }
-
   bool checkData() {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+    if (emailController.text.isNotEmpty) {
       setState(() {
         loading = true;
       });
@@ -152,13 +136,5 @@ class _LoginScreenState extends State<LoginScreen> {
       margin: EdgeInsets.all(kDefaultPadding),
     );
     return false;
-  }
-
-  Future<bool> login() async {
-    bool status = await FbAuthController().signIn(
-      email: emailController.text,
-      password: passwordController.text,
-    );
-    return status;
   }
 }
