@@ -54,7 +54,9 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: 'enter-fname'.tr, controller: firstNamecontroller),
+                  text: 'enter-fname'.tr,
+                  controller: firstNamecontroller,
+                  textInputType: TextInputType.name),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -65,7 +67,9 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: 'enter-lname'.tr, controller: lastNamecontroller),
+                  text: 'enter-lname'.tr,
+                  controller: lastNamecontroller,
+                  textInputType: TextInputType.name),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -76,7 +80,9 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: 'enter-company'.tr, controller: companyController),
+                  text: 'enter-company'.tr,
+                  controller: companyController,
+                  textInputType: TextInputType.text),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -88,7 +94,8 @@ class VCardScreen extends StatelessWidget {
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
                   text: 'enter-designation'.tr,
-                  controller: designationController),
+                  controller: designationController,
+                  textInputType: TextInputType.text),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -109,7 +116,10 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: '82623484', controller: homeController, isMobile: true),
+                  text: '82623484',
+                  controller: homeController,
+                  isMobile: true,
+                  textInputType: TextInputType.phone),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -122,7 +132,8 @@ class VCardScreen extends StatelessWidget {
               AppTextFiled(
                   text: '599416210',
                   controller: workController,
-                  isMobile: true),
+                  isMobile: true,
+                  textInputType: TextInputType.phone),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -135,7 +146,8 @@ class VCardScreen extends StatelessWidget {
               AppTextFiled(
                   text: '597809495',
                   controller: mobileController,
-                  isMobile: true),
+                  isMobile: true,
+                  textInputType: TextInputType.phone),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -145,7 +157,10 @@ class VCardScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: kDefaultPadding / 2),
-              AppTextFiled(text: 'enter-state'.tr, controller: stateController),
+              AppTextFiled(
+                  text: 'enter-state'.tr,
+                  controller: stateController,
+                  textInputType: TextInputType.text),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -156,7 +171,9 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: 'enter-country'.tr, controller: contryController),
+                  text: 'enter-country'.tr,
+                  controller: contryController,
+                  textInputType: TextInputType.text),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -167,7 +184,9 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: 'enter-address1'.tr, controller: address1Controller),
+                  text: 'enter-address1'.tr,
+                  controller: address1Controller,
+                  textInputType: TextInputType.streetAddress),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -178,7 +197,9 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: 'enter-address2'.tr, controller: address2Controller),
+                  text: 'enter-address2'.tr,
+                  controller: address2Controller,
+                  textInputType: TextInputType.streetAddress),
               SizedBox(height: kDefaultPadding * 1.5),
               Align(
                 alignment: AlignmentDirectional.topStart,
@@ -189,7 +210,9 @@ class VCardScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding / 2),
               AppTextFiled(
-                  text: 'enter-website'.tr, controller: websiteController),
+                  text: 'enter-website'.tr,
+                  controller: websiteController,
+                  textInputType: TextInputType.url),
               SizedBox(height: kDefaultPadding * 1.5),
               AppButton(
                 onPressed: () async {
