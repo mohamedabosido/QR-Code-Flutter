@@ -23,155 +23,138 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passwordController = TextEditingController();
 
   TextEditingController mobileController = TextEditingController();
-
-  bool loading = false;
-
+  String vId = '';
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? const Scaffold(
-            body: Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          )
-        : Scaffold(
-            appBar: const AppAppBar(),
-            backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(
-                    left: kDefaultPadding * 2,
-                    right: kDefaultPadding * 2,
-                    top: kDefaultPadding * 2),
-                child: Column(
+    return Scaffold(
+      appBar: const AppAppBar(),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+              left: kDefaultPadding * 2,
+              right: kDefaultPadding * 2,
+              top: kDefaultPadding * 2),
+          child: Column(
+            children: [
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Text(
+                  'signup'.tr,
+                  style: const TextStyle(
+                    fontSize: 28,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(height: kDefaultPadding),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Text(
+                  'signup-sub'.tr,
+                  style: TextStyle(fontSize: 16, color: kSecondaryTextColor),
+                ),
+              ),
+              SizedBox(height: kDefaultPadding * 2),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Text(
+                  'Full name'.tr,
+                  style: TextStyle(fontSize: 14, color: kSecondaryTextColor),
+                ),
+              ),
+              SizedBox(height: kDefaultPadding / 2),
+              AppTextFiled(
+                text: 'enter-name'.tr,
+                controller: nameController,
+                textInputType: TextInputType.name,
+              ),
+              SizedBox(height: kDefaultPadding * 1.5),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Text(
+                  'email'.tr,
+                  style: TextStyle(fontSize: 14, color: kSecondaryTextColor),
+                ),
+              ),
+              SizedBox(height: kDefaultPadding / 2),
+              AppTextFiled(text: 'enter-email'.tr, controller: emailController),
+              SizedBox(height: kDefaultPadding * 1.5),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Text(
+                  'password'.tr,
+                  style: TextStyle(fontSize: 14, color: kSecondaryTextColor),
+                ),
+              ),
+              SizedBox(height: kDefaultPadding / 2),
+              AppTextFiled(
+                  text: 'enter-password'.tr,
+                  isPassword: true,
+                  controller: passwordController),
+              SizedBox(height: kDefaultPadding * 1.5),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Text(
+                  'mobile'.tr,
+                  style: TextStyle(fontSize: 14, color: kSecondaryTextColor),
+                ),
+              ),
+              SizedBox(height: kDefaultPadding / 2),
+              AppTextFiled(
+                text: '599487724',
+                controller: mobileController,
+                textInputType: TextInputType.number,
+                isMobile: true,
+              ),
+              SizedBox(height: kDefaultPadding * 1.5),
+              AppButton(
+                onPressed: () async {
+                  if (await performRegister()) {
+                    FbAuthController().verifyPhoneNumber(
+                        mobile: '+970${mobileController.text}', vId: vId);
+                    Get.toNamed('/lgoin_screen', arguments: vId);
+                  }
+                },
+                color: kPrimaryColor,
+                child: Text(
+                  'signup'.tr,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
+              SizedBox(height: kDefaultPadding * 1.5),
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'signup'.tr,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    Text(
+                      'already have account'.tr,
+                      style:
+                          TextStyle(color: kSecondaryTextColor, fontSize: 14),
                     ),
-                    SizedBox(height: kDefaultPadding),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'signup-sub'.tr,
-                        style:
-                            TextStyle(fontSize: 16, color: kSecondaryTextColor),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding * 2),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'Full name'.tr,
-                        style:
-                            TextStyle(fontSize: 14, color: kSecondaryTextColor),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    AppTextFiled(
-                      text: 'enter-name'.tr,
-                      controller: nameController,
-                      textInputType: TextInputType.name,
-                    ),
-                    SizedBox(height: kDefaultPadding * 1.5),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'email'.tr,
-                        style:
-                            TextStyle(fontSize: 14, color: kSecondaryTextColor),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    AppTextFiled(
-                        text: 'enter-email'.tr, controller: emailController),
-                    SizedBox(height: kDefaultPadding * 1.5),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'password'.tr,
-                        style:
-                            TextStyle(fontSize: 14, color: kSecondaryTextColor),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    AppTextFiled(
-                        text: 'enter-password'.tr,
-                        isPassword: true,
-                        controller: passwordController),
-                    SizedBox(height: kDefaultPadding * 1.5),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Text(
-                        'mobile'.tr,
-                        style:
-                            TextStyle(fontSize: 14, color: kSecondaryTextColor),
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding / 2),
-                    AppTextFiled(
-                      text: '599487724',
-                      controller: mobileController,
-                      textInputType: TextInputType.number,
-                      isMobile: true,
-                    ),
-                    SizedBox(height: kDefaultPadding * 1.5),
-                    AppButton(
-                      onPressed: () async {
-                        if (await performRegister()) {
-                          Get.offAllNamed('/main_screen');
-                        } else {
-                          setState(() {
-                            loading = false;
-                          });
-                        }
+                    TextButton(
+                      onPressed: () {
+                        Get.toNamed('/login_screen');
                       },
-                      color: kPrimaryColor,
                       child: Text(
-                        'signup'.tr,
-                        style: const TextStyle(fontSize: 18),
+                        'signin'.tr,
+                        style: TextStyle(color: kPrimaryColor, fontSize: 14),
                       ),
-                    ),
-                    SizedBox(height: kDefaultPadding * 1.5),
-                    Align(
-                      alignment: AlignmentDirectional.center,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'already have account'.tr,
-                            style: TextStyle(
-                                color: kSecondaryTextColor, fontSize: 14),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Get.toNamed('/login_screen');
-                            },
-                            child: Text(
-                              'signin'.tr,
-                              style:
-                                  TextStyle(color: kPrimaryColor, fontSize: 14),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: kDefaultPadding * 1.5),
-                    Divider(color: kLineColor),
-                    SizedBox(height: kDefaultPadding * 1.5),
-                    const PrivacyPolicy(),
+                    )
                   ],
                 ),
               ),
-            ),
-          );
+              SizedBox(height: kDefaultPadding * 1.5),
+              Divider(color: kLineColor),
+              SizedBox(height: kDefaultPadding * 1.5),
+              const PrivacyPolicy(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   bool checkData() {
@@ -179,9 +162,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         passwordController.text.isNotEmpty &&
         nameController.text.isNotEmpty &&
         mobileController.text.isNotEmpty) {
-      setState(() {
-        loading = true;
-      });
       return true;
     }
     Get.snackbar(
@@ -206,6 +186,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     bool status = await FbAuthController().createAccount(
       email: emailController.text,
       password: passwordController.text,
+      name: nameController.text,
+      mobile: mobileController.text,
     );
     return status;
   }

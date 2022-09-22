@@ -3,9 +3,15 @@ import 'package:flutter_qr/constant/constants.dart';
 
 // ignore: must_be_immutable
 class CodeTextField extends StatelessWidget {
-  CodeTextField({required this.controller, super.key});
+  CodeTextField(
+      {required this.controller,
+      required this.focusNode,
+      required this.onChanged,
+      super.key});
 
   TextEditingController controller;
+  FocusNode focusNode;
+  Function(String) onChanged;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -14,6 +20,8 @@ class CodeTextField extends StatelessWidget {
         width: 50,
         margin: EdgeInsetsDirectional.only(end: kDefaultPadding * 1.5),
         child: TextField(
+          onChanged: onChanged,
+          focusNode: focusNode,
           textAlignVertical: TextAlignVertical.top,
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           maxLength: 1,

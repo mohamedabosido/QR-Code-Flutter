@@ -60,30 +60,24 @@ class SettingsScreen extends StatelessWidget {
           CustomAppListTile(
             icon: 'images/user-protection-shield-square.svg',
             title: 'Privacy Policy'.tr,
-            trailing: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.arrow_forward_ios_outlined,
-                color: kUnselectedIconColor,
-                size: 16,
-              ),
-            ),
+            onTap: () {},
+          ),
+          SizedBox(height: kDefaultPadding * 1.5),
+          CustomAppListTile(
+            icon: 'images/personal-page-svgrepo-com.svg',
+            title: 'generate-vcard'.tr,
+            onTap: () async {
+              Get.toNamed('/vcard_screen');
+            },
           ),
           SizedBox(height: kDefaultPadding * 1.5),
           CustomAppListTile(
             icon: 'images/logout.svg',
             title: 'logout'.tr,
-            trailing: IconButton(
-              onPressed: () async {
-                await FbAuthController().signOut();
-                Get.offAllNamed('/auth_screen');
-              },
-              icon: Icon(
-                Icons.arrow_forward_ios_outlined,
-                color: kUnselectedIconColor,
-                size: 16,
-              ),
-            ),
+            onTap: () async {
+              await FbAuthController().signOut();
+              Get.offAllNamed('/auth_screen');
+            },
           ),
           SizedBox(height: kDefaultPadding * 1.5),
           Divider(

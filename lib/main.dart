@@ -10,6 +10,7 @@ import 'package:flutter_qr/view/auth/sign_up_screen.dart';
 import 'package:flutter_qr/view/auth/verify_screen.dart';
 import 'package:flutter_qr/view/lunch_screen.dart';
 import 'package:flutter_qr/view/main_screen.dart';
+import 'package:flutter_qr/view/vcard_form.dart';
 import 'package:get/get.dart';
 import 'package:flutter_qr/locale/locale.dart';
 import 'package:flutter_qr/locale/locale_controller.dart';
@@ -64,9 +65,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/sign_up_screen', page: () => const SignUpScreen()),
         GetPage(
             name: '/forget_password_screen',
-            page: () => const ForgetPasswordScreen()),
+            page: () => ForgetPasswordScreen()),
         GetPage(name: '/verify_screen', page: () => const VerifyScreen()),
         GetPage(name: '/main_screen', page: () => const MainScreen()),
+        GetPage(name: '/vcard_screen', page: () => VCardScreen()),
       ],
     );
   }

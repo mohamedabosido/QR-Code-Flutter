@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
+import 'package:flutter_qr/controller/fb_controller/fb_auth_controller.dart';
 import 'package:flutter_qr/widgets/app_app_bar.dart';
 import 'package:flutter_qr/widgets/app_button.dart';
 import 'package:flutter_qr/widgets/privacy_policy.dart';
@@ -70,7 +71,9 @@ class AuthScreen extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding * 1.5),
               AppButton(
-                onPressed: () {},
+                onPressed: () async {
+                  FbAuthController().loginWithGoogle();
+                },
                 color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

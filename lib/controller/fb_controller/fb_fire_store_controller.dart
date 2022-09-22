@@ -6,12 +6,12 @@ import 'package:flutter_qr/model/qr_model.dart';
 import 'package:get/get.dart';
 
 class FbFireStoreController {
-  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+  final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   //CRUD
 
   Future<bool> create({required QrCodeModel qr}) async {
-    return _fireStore
+    return fireStore
         .collection('users-scannes')
         .doc(FbAuthController().firebaseAuth.currentUser!.uid)
         .collection('qrcodes')
@@ -21,7 +21,7 @@ class FbFireStoreController {
   }
 
   Future<bool> delete({required QrCodeModel qr}) async {
-    await _fireStore
+    await fireStore
         .collection('users-scannes')
         .doc(FbAuthController().firebaseAuth.currentUser!.uid)
         .collection('qrcodes')
@@ -49,7 +49,7 @@ class FbFireStoreController {
   }
 
   Stream<QuerySnapshot> read() async* {
-    yield* _fireStore
+    yield* fireStore
         .collection('users-scannes')
         .doc(FbAuthController().firebaseAuth.currentUser!.uid)
         .collection('qrcodes')

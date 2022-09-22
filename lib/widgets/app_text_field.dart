@@ -30,12 +30,12 @@ class _AppTextFiledState extends State<AppTextFiled> {
     return SizedBox(
       height: 60,
       child: TextField(
-        maxLength: widget.isMobile ? 7 : 30,
+        maxLength: widget.isMobile ? 9 : 30,
         keyboardType: widget.isPassword
             ? TextInputType.visiblePassword
             : widget.textInputType,
         controller: widget.controller,
-        obscureText: showPassword,
+        obscureText: widget.isPassword ? !showPassword : showPassword,
         decoration: InputDecoration(
           counterText: '',
           suffix: widget.isPassword
@@ -46,10 +46,9 @@ class _AppTextFiledState extends State<AppTextFiled> {
                     });
                   },
                   child: showPassword
-                      ? SvgPicture.asset('images/eye.svg', width: 22)
-                      : SvgPicture.asset('images/eye.svg',
-                          color: kPrimaryColor, width: 22),
-                )
+                      ? SvgPicture.asset('images/eye.svg',
+                          color: kPrimaryColor, width: 22)
+                      : SvgPicture.asset('images/eye.svg', width: 22))
               : null,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           prefixIcon: widget.isMobile

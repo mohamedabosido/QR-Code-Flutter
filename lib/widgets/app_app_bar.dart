@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qr/constant/constants.dart';
 import 'package:flutter_qr/locale/locale_controller.dart';
 import 'package:flutter_qr/prefs/user_preferences_controller.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class AppAppBar extends StatelessWidget with PreferredSizeWidget {
-  const AppAppBar({super.key});
+  final String title;
+  const AppAppBar({this.title = '', super.key});
 
   @override
   Widget build(BuildContext context) {
     MyLocaleController controller = Get.find();
-
     return AppBar(
+      title: Text(title, style: const TextStyle(color: Colors.black)),
       iconTheme: const IconThemeData(color: Colors.black),
       elevation: 0,
       backgroundColor: Colors.white,
