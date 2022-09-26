@@ -170,8 +170,8 @@ class MyLocale implements Translations {
           'enter-country': 'Enter country name',
           'address1': 'Address Line 1',
           'enter-address1': 'Enter address line 1',
-          'address2': 'العنوان 2',
-          'enter-address2': 'Address Line 2',
+          'address2': 'Address Line 2',
+          'enter-address2': 'Enter address line 2',
           'enter-website': 'Enter address line 2',
           'generate-vcard': 'Generate VCard',
           'vcard': 'VCard'
