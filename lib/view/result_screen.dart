@@ -15,7 +15,6 @@ class ResultScreen extends StatelessWidget {
   QrCodeModel qr;
 
   ResultScreen({required this.qr, Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     DateTime time = (qr.time).toDate();
@@ -25,7 +24,7 @@ class ResultScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-            Get.offAllNamed('/main_screen');
+            Get.back();
           },
           icon: Icon(
             UserPreferencesController().getLangCode() == 'en'
@@ -88,7 +87,7 @@ class ResultScreen extends StatelessWidget {
                 SizedBox(height: kDefaultPadding / 2),
                 TextButton(
                   onPressed: () async {
-                    if (qr.type == 'url') {
+                    if (qr.type == 'url' || qr.type == 'vcard') {
                       await launchUrl(Uri.parse(qr.url));
                     } else {
                       Clipboard.setData(ClipboardData(text: qr.url));
@@ -141,7 +140,7 @@ class ResultScreen extends StatelessWidget {
                   icon: 'images/safari.svg',
                   title: 'open'.tr,
                   onTap: () async {
-                    if (qr.type == 'url') {
+                    if (qr.type == 'url' || qr.type == 'vcard') {
                       await launchUrl(Uri.parse(qr.url));
                     } else {
                       Clipboard.setData(ClipboardData(text: qr.url));

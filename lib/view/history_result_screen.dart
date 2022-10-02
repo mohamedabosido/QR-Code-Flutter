@@ -87,7 +87,7 @@ class HistoryResultScreen extends StatelessWidget {
                 SizedBox(height: kDefaultPadding / 2),
                 TextButton(
                   onPressed: () async {
-                    if (qr.type == 'url') {
+                    if (qr.type == 'url' || qr.type == 'vcard') {
                       await launchUrl(Uri.parse(qr.url));
                     } else {
                       Clipboard.setData(ClipboardData(text: qr.url));
@@ -140,7 +140,7 @@ class HistoryResultScreen extends StatelessWidget {
                   icon: 'images/safari.svg',
                   title: 'open'.tr,
                   onTap: () async {
-                    if (qr.type == 'url') {
+                    if (qr.type == 'url' || qr.type == 'vcard') {
                       await launchUrl(Uri.parse(qr.url));
                     } else {
                       Clipboard.setData(ClipboardData(text: qr.url));

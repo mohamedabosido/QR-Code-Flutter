@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
     QrCodeModel qr =
         QrCodeModel(url: shortenLink!, type: type, time: Timestamp.now());
     qr.id = const Uuid().v4();
-    Get.offAll(() => ResultScreen(qr: qr));
+    Get.to(() => ResultScreen(qr: qr));
     if (UserPreferencesController().getSound()) {
       FlutterBeep.beep();
     }

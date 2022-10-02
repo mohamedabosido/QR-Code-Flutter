@@ -242,9 +242,9 @@ class VCardScreen extends StatelessWidget {
           "designation": designationController.text,
           "email": emailController.text,
           "phone": {
-            "home": homeController.text,
-            "work": workController.text,
-            "mobile": mobileController.text
+            "home": '+970${homeController.text}',
+            "work": '+970${workController.text}',
+            "mobile": '+970${mobileController.text}'
           },
           "state": stateController.text,
           "country": contryController.text,
@@ -319,12 +319,12 @@ class VCardScreen extends StatelessWidget {
     return null;
   }
 
-  void saveQr({required String result, type = 'url'}) async {
+  void saveQr({required String result, type = 'vcard'}) async {
     final shortenLink = await shortenUrl(url: result);
     QrCodeModel qr =
         QrCodeModel(url: shortenLink!, type: type, time: Timestamp.now());
     qr.id = const Uuid().v4();
-    Get.offAll(() => ResultScreen(qr: qr));
+    Get.to(() => ResultScreen(qr: qr));
     if (UserPreferencesController().getSound()) {
       FlutterBeep.beep();
     }
