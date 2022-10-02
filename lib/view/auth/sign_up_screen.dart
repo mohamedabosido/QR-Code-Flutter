@@ -112,8 +112,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               AppButton(
                 onPressed: () async {
                   if (await performRegister()) {
-                    FbAuthController().verifyPhoneNumber(
-                        mobile: '+970${mobileController.text}', vId: vId);
+                    // FbAuthController().verifyPhoneNumber(
+                    //     mobile: '+970${mobileController.text}', vId: vId);
                     Get.toNamed('/lgoin_screen', arguments: vId);
                   }
                 },
